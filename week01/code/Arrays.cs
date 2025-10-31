@@ -8,12 +8,17 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //1.create a new array of double with size lenghth
+        double[] multiples = new double[length];
 
-        return []; // replace this return statement with your own
+        //2.use a for loop to iterate through the array from 0 to length -1
+        for (int i = 0; i < length; i++)
+        {
+            //3. inside the loop, set each element at index i to be number * (i+ 1)
+            multiples[i] = number * (i + 1);
+        }
+        //4. return the array multiples
+        return multiples; // replace this return statement with your own
     }
 
     /// <summary>
@@ -25,6 +30,29 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
+        //0. Guard clauses
+        if (data == null || data.Count == 0)
+        {
+            return; // nothing to rotate
+        }
+
+        //1.Normalize the amount so it is in range of 0 to data.Count -1
+        amount = amount % data.Count;
+        if (amount == 0)
+        {
+            return; // no rotation needed
+        }
+        //2. Copy th last 'amount' elements into a temporary list.
+        //Example: if the data = {1,2,3,4,5,6,7,8,9} and the amount = 3
+        // then the temp list = {7,8,9}
+        var temp = data.GetRange(data.Count - amount, amount);
+
+        //3.Remove those last elements from the end of the original list.
+        data.RemoveRange(data.Count - amount, amount);
+
+        //4. Insert the saved elements from the temporary list to the front of the original lilst.
+        data.InsertRange(0, temp);
+
         // TODO Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
