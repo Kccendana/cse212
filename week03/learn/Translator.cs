@@ -8,7 +8,17 @@ public class Translator
         englishToGerman.AddWord("Plane", "Flugzeug");
         Console.WriteLine(englishToGerman.Translate("Car")); // Auto
         Console.WriteLine(englishToGerman.Translate("Plane")); // Flugzeug
+        Console.WriteLine(englishToGerman.Translate("House")); // Haus
         Console.WriteLine(englishToGerman.Translate("Train")); // ???
+
+        var englishToBisaya = new Translator();
+        englishToBisaya.AddWord("House", "Balay");
+        englishToBisaya.AddWord("Car", "Sakyanan");
+        englishToBisaya.AddWord("Plane", "Eroplano");
+        Console.WriteLine(englishToBisaya.Translate("Car")); // Sakyanan
+        Console.WriteLine(englishToBisaya.Translate("Plane")); // Eroplano
+        Console.WriteLine(englishToBisaya.Translate("House")); // Balay
+        Console.WriteLine(englishToBisaya.Translate("Train")); // ???
     }
 
     private Dictionary<string, string> _words = new();
@@ -24,7 +34,7 @@ public class Translator
     /// <returns>fixed array of divisors</returns>
     public void AddWord(string fromWord, string toWord)
     {
-        // ADD YOUR CODE HERE
+        _words[fromWord] = toWord;
     }
 
     /// <summary>
@@ -34,7 +44,11 @@ public class Translator
     /// <returns>The translated word or "???" if no translation is available</returns>
     public string Translate(string fromWord)
     {
-        // ADD YOUR CODE HERE
-        return "";
+        string newWord = "???";
+        if (_words.ContainsKey(fromWord))
+        {
+            return _words[fromWord];
+        }
+        return newWord;
     }
 }
